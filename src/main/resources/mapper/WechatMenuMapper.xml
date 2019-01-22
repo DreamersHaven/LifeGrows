@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dreamershaven.wechat.mapper.WechatMenuMapper">
+
+
+	<select id="list" resultType="com.dreamershaven.wechat.bean.WechatMenuDO">
+		select
+		`menu_id`,`parent_id`,`name`,`url`,`perms`,`type`,`icon`,`order_num`,`gmt_create`,`gmt_modified`
+		from wechat_menu
+		<where>
+			<if test="menuId != null and menuId != ''"> and menu_id = #{menuId} </if>
+			<if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
+			<if test="name != null and name != ''"> and name = #{name} </if>
+			<if test="url != null and url != ''"> and url = #{url} </if>
+			<if test="perms != null and perms != ''"> and perms = #{perms} </if>
+			<if test="type != null and type != ''"> and type = #{type} </if>
+			<if test="icon != null and icon != ''"> and icon = #{icon} </if>
+			<if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>
+			<if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+			<if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			 
+			<otherwise>
+				order by menu_id 
+			</otherwise>
+			 
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+</mapper>

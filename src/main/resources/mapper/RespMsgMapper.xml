@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dreamershaven.wechat.mapper.RespMsgMapper">
+
+	<select id="get" resultType="com.dreamershaven.wechat.bean.RespMsgDO">
+		select `msg_id`,`msg_type`,`title`,`description`,`pic_url`,`url`,`content`,`func_flag`,`key_word`,`key_word_type`,`req_msg_type` from wechat_resp_msg where msg_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.dreamershaven.wechat.bean.RespMsgDO">
+		select `msg_id`,`msg_type`,`title`,`description`,`pic_url`,`url`,`content`,`func_flag`,`key_word`,`key_word_type`,`req_msg_type` from wechat_resp_msg
+        <where>  
+		  		  <if test="msgId != null and msgId != ''"> and msg_id = #{msgId} </if>
+		  		  <if test="msgType != null and msgType != ''"> and msg_type = #{msgType} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="description != null and description != ''"> and description = #{description} </if>
+		  		  <if test="picUrl != null and picUrl != ''"> and pic_url = #{picUrl} </if>
+		  		  <if test="url != null and url != ''"> and url = #{url} </if>
+		  		  <if test="content != null and content != ''"> and content = #{content} </if>
+		  		  <if test="funcFlag != null and funcFlag != ''"> and func_flag = #{funcFlag} </if>
+		  		  <if test="keyWord != null and keyWord != ''"> and key_word = #{keyWord} </if>
+		  		  <if test="keyWordType != null and keyWordType != ''"> and key_word_type = #{keyWordType} </if>
+		  		  <if test="reqMsgType != null and reqMsgType != ''"> and req_msg_type = #{reqMsgType} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by msg_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from wechat_resp_msg
+		 <where>  
+		  		  <if test="msgId != null and msgId != ''"> and msg_id = #{msgId} </if>
+		  		  <if test="msgType != null and msgType != ''"> and msg_type = #{msgType} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="description != null and description != ''"> and description = #{description} </if>
+		  		  <if test="picUrl != null and picUrl != ''"> and pic_url = #{picUrl} </if>
+		  		  <if test="url != null and url != ''"> and url = #{url} </if>
+		  		  <if test="content != null and content != ''"> and content = #{content} </if>
+		  		  <if test="funcFlag != null and funcFlag != ''"> and func_flag = #{funcFlag} </if>
+		  		  <if test="keyWord != null and keyWord != ''"> and key_word = #{keyWord} </if>
+		  		  <if test="keyWordType != null and keyWordType != ''"> and key_word_type = #{keyWordType} </if>
+		  		  <if test="reqMsgType != null and reqMsgType != ''"> and req_msg_type = #{reqMsgType} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.dreamershaven.wechat.bean.RespMsgDO" useGeneratedKeys="true" keyProperty="msgId">
+		insert into wechat_resp_msg
+		(
+			`msg_type`, 
+			`title`, 
+			`description`, 
+			`pic_url`, 
+			`url`, 
+			`content`, 
+			`func_flag`, 
+			`key_word`, 
+			`key_word_type`, 
+			`req_msg_type`
+		)
+		values
+		(
+			#{msgType}, 
+			#{title}, 
+			#{description}, 
+			#{picUrl}, 
+			#{url}, 
+			#{content}, 
+			#{funcFlag}, 
+			#{keyWord}, 
+			#{keyWordType}, 
+			#{reqMsgType}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.dreamershaven.wechat.bean.RespMsgDO">
+		update wechat_resp_msg 
+		<set>
+			<if test="msgType != null">`msg_type` = #{msgType}, </if>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="description != null">`description` = #{description}, </if>
+			<if test="picUrl != null">`pic_url` = #{picUrl}, </if>
+			<if test="url != null">`url` = #{url}, </if>
+			<if test="content != null">`content` = #{content}, </if>
+			<if test="funcFlag != null">`func_flag` = #{funcFlag}, </if>
+			<if test="keyWord != null">`key_word` = #{keyWord}, </if>
+			<if test="keyWordType != null">`key_word_type` = #{keyWordType}, </if>
+			<if test="reqMsgType != null">`req_msg_type` = #{reqMsgType}</if>
+		</set>
+		where msg_id = #{msgId}
+	</update>
+	
+	<delete id="remove">
+		delete from wechat_resp_msg where msg_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from wechat_resp_msg where msg_id in 
+		<foreach item="msgId" collection="array" open="(" separator="," close=")">
+			#{msgId}
+		</foreach>
+	</delete>
+
+</mapper>

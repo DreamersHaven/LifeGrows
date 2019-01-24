@@ -4,11 +4,11 @@
 <mapper namespace="com.dreamershaven.wechat.mapper.DesignResultMapper">
 
 	<select id="get" resultType="com.dreamershaven.wechat.bean.DesignResultDO">
-		select `id`,`user_id`,`username`,`in_pic_id`,`out_pic_id`,`p_pic_id`,`eva_desc`,`gmt_create`,`status` from design_result where id = #{value}
+		select `id`,`user_id`,`username`,`in_pic_id`,`out_pic_id`,`p_pic_id`,`eva_desc`,`gmt_create`,`status`,`m_result`,`l_result`,`a_result`,`disc_type` from design_result where id = #{value}
 	</select>
 
 	<select id="list" resultType="com.dreamershaven.wechat.bean.DesignResultDO">
-		select `id`,`user_id`,`username`,`in_pic_id`,`out_pic_id`,`p_pic_id`,`eva_desc`,`gmt_create`,`status` from design_result
+		select `id`,`user_id`,`username`,`in_pic_id`,`out_pic_id`,`p_pic_id`,`eva_desc`,`gmt_create`,`status`,`m_result`,`l_result`,`a_result`,`disc_type` from design_result
         <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
@@ -19,6 +19,10 @@
 		  		  <if test="evaDesc != null and evaDesc != ''"> and eva_desc = #{evaDesc} </if>
 		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
 		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="mResult != null and mResult != ''"> and m_result = #{mResult} </if>
+		  		  <if test="lResult != null and lResult != ''"> and l_result = #{lResult} </if>
+		  		  <if test="aResult != null and aResult != ''"> and a_result = #{aResult} </if>
+		  		  <if test="discType != null and discType != ''"> and disc_type = #{discType} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
@@ -45,6 +49,10 @@
 		  		  <if test="evaDesc != null and evaDesc != ''"> and eva_desc = #{evaDesc} </if>
 		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
 		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="mResult != null and mResult != ''"> and m_result = #{mResult} </if>
+		  		  <if test="lResult != null and lResult != ''"> and l_result = #{lResult} </if>
+		  		  <if test="aResult != null and aResult != ''"> and a_result = #{aResult} </if>
+		  		  <if test="discType != null and discType != ''"> and disc_type = #{discType} </if>
 		  		</where>
 	</select>
 	 
@@ -58,7 +66,11 @@
 			`p_pic_id`, 
 			`eva_desc`, 
 			`gmt_create`, 
-			`status`
+			`status`, 
+			`m_result`, 
+			`l_result`, 
+			`a_result`, 
+			`disc_type`
 		)
 		values
 		(
@@ -69,7 +81,11 @@
 			#{pPicId}, 
 			#{evaDesc}, 
 			#{gmtCreate}, 
-			#{status}
+			#{status}, 
+			#{mResult}, 
+			#{lResult}, 
+			#{aResult}, 
+			#{discType}
 		)
 	</insert>
 	 
@@ -83,7 +99,11 @@
 			<if test="pPicId != null">`p_pic_id` = #{pPicId}, </if>
 			<if test="evaDesc != null">`eva_desc` = #{evaDesc}, </if>
 			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
-			<if test="status != null">`status` = #{status}</if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="mResult != null">`m_result` = #{mResult}, </if>
+			<if test="lResult != null">`l_result` = #{lResult}, </if>
+			<if test="aResult != null">`a_result` = #{aResult}, </if>
+			<if test="discType != null">`disc_type` = #{discType}</if>
 		</set>
 		where id = #{id}
 	</update>

@@ -10,7 +10,7 @@ import java.util.Date;
  * 
  * @author dongyaxin
  * @email 1992lcg@163.com
- * @date 2019-01-20 19:59:36
+ * @date 2019-01-24 18:36:43
  */
 public class DesignResultDO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -33,6 +33,14 @@ public class DesignResultDO implements Serializable {
 	private Date gmtCreate;
 	// 状态
 	private Integer status;
+	//最符合DISC结果，以逗号分隔
+	private String mResult;
+	//最不符合DISC测试结果
+	private String lResult;
+	//相减DISC测试结果
+	private String aResult;
+	//DISC类型
+	private String discType;
 
 	/**
 	 * 设置：主键
@@ -141,5 +149,53 @@ public class DesignResultDO implements Serializable {
 	 */
 	public Integer getStatus() {
 		return status;
+	}
+	/**
+	 * 设置：最符合DISC结果，以逗号分隔
+	 */
+	public void setMResult(String mResult) {
+		this.mResult = mResult;
+	}
+	/**
+	 * 获取：最符合DISC结果，以逗号分隔
+	 */
+	public String getMResult() {
+		return mResult;
+	}
+	/**
+	 * 设置：最不符合DISC测试结果
+	 */
+	public void setLResult(String lResult) {
+		this.lResult = lResult;
+	}
+	/**
+	 * 获取：最不符合DISC测试结果
+	 */
+	public String getLResult() {
+		return lResult;
+	}
+	/**
+	 * 设置：相减DISC测试结果
+	 */
+	public void setAResult(String aResult) {
+		this.aResult = aResult;
+	}
+	/**
+	 * 获取：相减DISC测试结果
+	 */
+	public String getAResult() {
+		return aResult;
+	}
+	/**
+	 * 设置：DISC类型
+	 */
+	public void setDiscType(String discType) {
+		this.discType = discType;
+	}
+	/**
+	 * 获取：DISC类型
+	 */
+	public String getDiscType() {
+		return discType;
 	}
 }

@@ -1,7 +1,5 @@
 package com.dreamershaven.wechat.mapper;
 
-
-
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +11,7 @@ import com.dreamershaven.wechat.bean.DesignResultDO;
  * 
  * @author dongyaxin
  * @email 1992lcg@163.com
- * @date 2019-01-20 19:59:36
+ * @date 2019-01-24 18:36:43
  */
 @Mapper
 public interface DesignResultMapper {

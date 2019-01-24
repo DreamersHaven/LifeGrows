@@ -3,6 +3,9 @@ package com.dreamershaven.wechat.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 
 
 /**
@@ -12,34 +15,48 @@ import java.util.Date;
  * @email 1992lcg@163.com
  * @date 2019-01-24 18:36:43
  */
+@ApiModel(value="DISC对象",description="这是DISC结果对象")
 public class DesignResultDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//主键
+	@ApiModelProperty(hidden=true)
 	private Long id;
 	//用户标识ID
+	@ApiModelProperty(value="用户ID",name="userid",example="14",required=true)
 	private Long userId;
 	//用户名
+	@ApiModelProperty(value="用户名",name="username",example="dongyaxin",required=true)
 	private String username;
 	//内在图
+	@ApiModelProperty(hidden=true)
 	private String inPicId;
 	//外在图
+	@ApiModelProperty(hidden=true)
 	private String outPicId;
 	//受压图
+	@ApiModelProperty(hidden=true)
 	private String pPicId;
 	//测评结果描述
+	@ApiModelProperty(hidden=true)
 	private String evaDesc;
 	//创建时间
+	@ApiModelProperty(hidden=true)
 	private Date gmtCreate;
 	// 状态
+	@ApiModelProperty(hidden=true)
 	private Integer status;
 	//最符合DISC结果，以逗号分隔
+	@ApiModelProperty(value="最符合DISC结果",name="mResult",example="16,7,2,3",required=true)
 	private String mResult;
 	//最不符合DISC测试结果
+	@ApiModelProperty(value="最不符合DISC测试结果",name="lResult",example="4,7,12,6",required=true)
 	private String lResult;
 	//相减DISC测试结果
+	@ApiModelProperty(value="相减DISC测试结果",name="aResult",example="12,0,-10,-3",required=true)
 	private String aResult;
 	//DISC类型
+	@ApiModelProperty(value="DISC类型",name="discType",example="DI",required=true)
 	private String discType;
 
 	/**

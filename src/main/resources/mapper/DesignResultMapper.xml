@@ -4,24 +4,24 @@
 <mapper namespace="com.dreamershaven.wechat.mapper.DesignResultMapper">
 
 	<select id="get" resultType="com.dreamershaven.wechat.bean.DesignResultDO">
-		select `id`,`user_id`,`username`,`in_pic_id`,`out_pic_id`,`p_pic_id`,`eva_desc`,`gmt_create`,`status`,`m_result`,`l_result`,`a_result`,`disc_type` from design_result where id = #{value}
+		select `id`,`user_id`,`username`,`in_pic_id`,`out_pic_id`,`pre_pic_id`,`eva_desc`,`gmt_create`,`status`,`mresult`,`lresult`,`aresult`,`disc_type` from design_result where id = #{value}
 	</select>
 
 	<select id="list" resultType="com.dreamershaven.wechat.bean.DesignResultDO">
-		select `id`,`user_id`,`username`,`in_pic_id`,`out_pic_id`,`p_pic_id`,`eva_desc`,`gmt_create`,`status`,`m_result`,`l_result`,`a_result`,`disc_type` from design_result
+		select `id`,`user_id`,`username`,`in_pic_id`,`out_pic_id`,`pre_pic_id`,`eva_desc`,`gmt_create`,`status`,`mresult`,`lresult`,`aresult`,`disc_type` from design_result
         <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
 		  		  <if test="username != null and username != ''"> and username = #{username} </if>
 		  		  <if test="inPicId != null and inPicId != ''"> and in_pic_id = #{inPicId} </if>
 		  		  <if test="outPicId != null and outPicId != ''"> and out_pic_id = #{outPicId} </if>
-		  		  <if test="pPicId != null and pPicId != ''"> and p_pic_id = #{pPicId} </if>
+		  		  <if test="prePicId != null and prePicId != ''"> and pre_pic_id = #{prePicId} </if>
 		  		  <if test="evaDesc != null and evaDesc != ''"> and eva_desc = #{evaDesc} </if>
 		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
 		  		  <if test="status != null and status != ''"> and status = #{status} </if>
-		  		  <if test="mResult != null and mResult != ''"> and m_result = #{mResult} </if>
-		  		  <if test="lResult != null and lResult != ''"> and l_result = #{lResult} </if>
-		  		  <if test="aResult != null and aResult != ''"> and a_result = #{aResult} </if>
+		  		  <if test="mresult != null and mresult != ''"> and mresult = #{mresult} </if>
+		  		  <if test="lresult != null and lresult != ''"> and lresult = #{lresult} </if>
+		  		  <if test="aresult != null and aresult != ''"> and aresult = #{aresult} </if>
 		  		  <if test="discType != null and discType != ''"> and disc_type = #{discType} </if>
 		  		</where>
         <choose>
@@ -45,13 +45,13 @@
 		  		  <if test="username != null and username != ''"> and username = #{username} </if>
 		  		  <if test="inPicId != null and inPicId != ''"> and in_pic_id = #{inPicId} </if>
 		  		  <if test="outPicId != null and outPicId != ''"> and out_pic_id = #{outPicId} </if>
-		  		  <if test="pPicId != null and pPicId != ''"> and p_pic_id = #{pPicId} </if>
+		  		  <if test="prePicId != null and prePicId != ''"> and pre_pic_id = #{prePicId} </if>
 		  		  <if test="evaDesc != null and evaDesc != ''"> and eva_desc = #{evaDesc} </if>
 		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
 		  		  <if test="status != null and status != ''"> and status = #{status} </if>
-		  		  <if test="mResult != null and mResult != ''"> and m_result = #{mResult} </if>
-		  		  <if test="lResult != null and lResult != ''"> and l_result = #{lResult} </if>
-		  		  <if test="aResult != null and aResult != ''"> and a_result = #{aResult} </if>
+		  		  <if test="mresult != null and mresult != ''"> and mresult = #{mresult} </if>
+		  		  <if test="lresult != null and lresult != ''"> and lresult = #{lresult} </if>
+		  		  <if test="aresult != null and aresult != ''"> and aresult = #{aresult} </if>
 		  		  <if test="discType != null and discType != ''"> and disc_type = #{discType} </if>
 		  		</where>
 	</select>
@@ -63,13 +63,13 @@
 			`username`, 
 			`in_pic_id`, 
 			`out_pic_id`, 
-			`p_pic_id`, 
+			`pre_pic_id`, 
 			`eva_desc`, 
 			`gmt_create`, 
 			`status`, 
-			`m_result`, 
-			`l_result`, 
-			`a_result`, 
+			`mresult`, 
+			`lresult`, 
+			`aresult`, 
 			`disc_type`
 		)
 		values
@@ -78,13 +78,13 @@
 			#{username}, 
 			#{inPicId}, 
 			#{outPicId}, 
-			#{pPicId}, 
+			#{prePicId}, 
 			#{evaDesc}, 
 			#{gmtCreate}, 
 			#{status}, 
-			#{mResult}, 
-			#{lResult}, 
-			#{aResult}, 
+			#{mresult}, 
+			#{lresult}, 
+			#{aresult}, 
 			#{discType}
 		)
 	</insert>
@@ -96,13 +96,13 @@
 			<if test="username != null">`username` = #{username}, </if>
 			<if test="inPicId != null">`in_pic_id` = #{inPicId}, </if>
 			<if test="outPicId != null">`out_pic_id` = #{outPicId}, </if>
-			<if test="pPicId != null">`p_pic_id` = #{pPicId}, </if>
+			<if test="prePicId != null">`pre_pic_id` = #{prePicId}, </if>
 			<if test="evaDesc != null">`eva_desc` = #{evaDesc}, </if>
 			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
 			<if test="status != null">`status` = #{status}, </if>
-			<if test="mResult != null">`m_result` = #{mResult}, </if>
-			<if test="lResult != null">`l_result` = #{lResult}, </if>
-			<if test="aResult != null">`a_result` = #{aResult}, </if>
+			<if test="mresult != null">`mresult` = #{mresult}, </if>
+			<if test="lresult != null">`lresult` = #{lresult}, </if>
+			<if test="aresult != null">`aresult` = #{aresult}, </if>
 			<if test="discType != null">`disc_type` = #{discType}</if>
 		</set>
 		where id = #{id}

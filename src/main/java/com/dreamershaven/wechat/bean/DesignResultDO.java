@@ -23,7 +23,7 @@ public class DesignResultDO implements Serializable {
 	@ApiModelProperty(hidden=true)
 	private Long id;
 	//用户标识ID
-	@ApiModelProperty(value="用户ID",name="userid",example="14",required=true)
+	@ApiModelProperty(value="用户ID",name="userId",example="14",required=true)
 	private Long userId;
 	//用户名
 	@ApiModelProperty(value="用户名",name="username",example="dongyaxin",required=true)
@@ -36,7 +36,7 @@ public class DesignResultDO implements Serializable {
 	private String outPicId;
 	//受压图
 	@ApiModelProperty(hidden=true)
-	private String pPicId;
+	private String prePicId;
 	//测评结果描述
 	@ApiModelProperty(hidden=true)
 	private String evaDesc;
@@ -47,14 +47,14 @@ public class DesignResultDO implements Serializable {
 	@ApiModelProperty(hidden=true)
 	private Integer status;
 	//最符合DISC结果，以逗号分隔
-	@ApiModelProperty(value="最符合DISC结果",name="mResult",example="16,7,2,3",required=true)
-	private String mResult;
+	@ApiModelProperty(value="最符合DISC结果",name="mresult",example="16,7,2,3",required=true)
+	private String mresult;
 	//最不符合DISC测试结果
-	@ApiModelProperty(value="最不符合DISC测试结果",name="lResult",example="4,7,12,6",required=true)
-	private String lResult;
+	@ApiModelProperty(value="最不符合DISC测试结果",name="lresult",example="4,7,12,6",required=true)
+	private String lresult;
 	//相减DISC测试结果
-	@ApiModelProperty(value="相减DISC测试结果",name="aResult",example="12,0,-10,-3",required=true)
-	private String aResult;
+	@ApiModelProperty(value="相减DISC测试结果",name="aresult",example="12,0,-10,-3",required=true)
+	private String aresult;
 	//DISC类型
 	@ApiModelProperty(value="DISC类型",name="discType",example="DI",required=true)
 	private String discType;
@@ -122,14 +122,14 @@ public class DesignResultDO implements Serializable {
 	/**
 	 * 设置：受压图
 	 */
-	public void setPPicId(String pPicId) {
-		this.pPicId = pPicId;
+	public void setprePicId(String pPicId) {
+		this.prePicId = pPicId;
 	}
 	/**
 	 * 获取：受压图
 	 */
-	public String getPPicId() {
-		return pPicId;
+	public String getPrePicId() {
+		return prePicId;
 	}
 	/**
 	 * 设置：测评结果描述
@@ -170,38 +170,38 @@ public class DesignResultDO implements Serializable {
 	/**
 	 * 设置：最符合DISC结果，以逗号分隔
 	 */
-	public void setMResult(String mResult) {
-		this.mResult = mResult;
+	public void setMresult(String mResult) {
+		this.mresult = mResult;
 	}
 	/**
 	 * 获取：最符合DISC结果，以逗号分隔
 	 */
-	public String getMResult() {
-		return mResult;
+	public String getMresult() {
+		return mresult;
 	}
 	/**
 	 * 设置：最不符合DISC测试结果
 	 */
-	public void setLResult(String lResult) {
-		this.lResult = lResult;
+	public void setLresult(String lResult) {
+		this.lresult = lResult;
 	}
 	/**
 	 * 获取：最不符合DISC测试结果
 	 */
-	public String getLResult() {
-		return lResult;
+	public String getLresult() {
+		return lresult;
 	}
 	/**
 	 * 设置：相减DISC测试结果
 	 */
-	public void setAResult(String aResult) {
-		this.aResult = aResult;
+	public void setAresult(String aResult) {
+		this.aresult = aResult;
 	}
 	/**
 	 * 获取：相减DISC测试结果
 	 */
-	public String getAResult() {
-		return aResult;
+	public String getAresult() {
+		return aresult;
 	}
 	/**
 	 * 设置：DISC类型

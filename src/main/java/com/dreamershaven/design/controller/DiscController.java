@@ -35,10 +35,11 @@ public class DiscController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value = "保存DISC测试结果", notes = "保存DISC测试结果接口")
-	@PostMapping("/save")
+	@PostMapping("/saveDiscResult")
 	public IMoocJSONResult saveDiscResult(@RequestBody DesignResultDO discResult) throws Exception {
 		
-		log.info("用户："+discResult.getUserId()+",正在保存DISC测试结果");
+		log.info("用户："+discResult.getUserId()+",正在保存DISC测试结果:");
+		log.info("最符合的DISC："+discResult.getMresult()+"。");
 		
 		Date date = new Date();
 		Timestamp timeStamep = new Timestamp(date.getTime());

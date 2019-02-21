@@ -58,7 +58,16 @@ public class DesignResultDO implements Serializable {
 	//DISC类型
 	@ApiModelProperty(value="DISC类型",name="discType",example="DI",required=true)
 	private String discType;
+	//最符合DISC结果对应的坐标值，以逗号分隔
+	@ApiModelProperty(value="最符合DISC结果对应的坐标值",name="yvalue",example="16,7,2,3",required=true)
+	private String yvalue;
 
+	public String getYvalue() {
+		return yvalue;
+	}
+	public void setYvalue(String yvalue) {
+		this.yvalue = yvalue;
+	}
 	/**
 	 * 设置：主键
 	 */

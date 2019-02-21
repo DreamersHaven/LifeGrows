@@ -12,8 +12,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.dreamershaven.WechatApplication;
-import com.dreamershaven.wechat.bean.DesignResultDO;
-import com.dreamershaven.wechat.mapper.DesignResultMapper;
+import com.dreamershaven.wechat.bean.DesignTypeDO;
+import com.dreamershaven.wechat.mapper.DesignTypeMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=WechatApplication.class)
@@ -22,17 +22,17 @@ import com.dreamershaven.wechat.mapper.DesignResultMapper;
 public class DesignResultMapperTest {
 	private static Logger log = LoggerFactory.getLogger(DesignResultMapperTest.class);
 	@Autowired
-	private DesignResultMapper designResultMapper;
+	private DesignTypeMapper designTypeMapper;
 	@Test
 	@Rollback
 	public void test() {
-		System.out.println("#############################################单元测试designResultMapper##########################");
+		System.out.println("#############################################单元测试designTypeMapper##########################");
 
-		List<DesignResultDO> designResultDOs = designResultMapper.list(null);
+		List<DesignTypeDO> designTypeDOs = designTypeMapper.list(null);
 		
-		for (DesignResultDO designResultDO : designResultDOs) {
-			log.info("用户姓名："+designResultDO.getUsername());
-			log.info("结果图片链接："+designResultDO.getInPicId());
+		for (DesignTypeDO designResultDO : designTypeDOs) {
+			log.info("类型："+designResultDO.getDiscType());
+			log.info("类型中文名："+designResultDO.getCname());
 		}
 	
 	}

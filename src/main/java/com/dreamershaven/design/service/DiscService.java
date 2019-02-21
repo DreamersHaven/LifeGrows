@@ -13,4 +13,13 @@ public interface DiscService {
 	 * @param designResultDO
 	 */
 	public void saveResult(DesignResultDO designResultDO);
+	
+	/**
+	 * 查询用户DISC结果信息
+	 * @param userId
+	 * @return
+	 */
+	public DesignResultDO queryUserDISCInfo(String userId);
+	
+	
 }

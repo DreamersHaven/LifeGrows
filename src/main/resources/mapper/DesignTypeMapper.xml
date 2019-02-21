@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dreamershaven.wechat.mapper.DesignTypeMapper">
+
+	<select id="get" resultType="com.dreamershaven.wechat.bean.DesignTypeDO">
+		select `id`,`disc_type`,`cname`,`eva_desc`,`ename`,`beha_chara`,`communicate`,`ability`,`superiority`,`vulnerable`,`backup1`,`backup2` from design_type where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.dreamershaven.wechat.bean.DesignTypeDO">
+		select `id`,`disc_type`,`cname`,`eva_desc`,`ename`,`beha_chara`,`communicate`,`ability`,`superiority`,`vulnerable`,`backup1`,`backup2` from design_type
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="discType != null and discType != ''"> and disc_type = #{discType} </if>
+		  		  <if test="cname != null and cname != ''"> and cname = #{cname} </if>
+		  		  <if test="evaDesc != null and evaDesc != ''"> and eva_desc = #{evaDesc} </if>
+		  		  <if test="ename != null and ename != ''"> and ename = #{ename} </if>
+		  		  <if test="behaChara != null and behaChara != ''"> and beha_chara = #{behaChara} </if>
+		  		  <if test="communicate != null and communicate != ''"> and communicate = #{communicate} </if>
+		  		  <if test="ability != null and ability != ''"> and ability = #{ability} </if>
+		  		  <if test="superiority != null and superiority != ''"> and superiority = #{superiority} </if>
+		  		  <if test="vulnerable != null and vulnerable != ''"> and vulnerable = #{vulnerable} </if>
+		  		  <if test="backup1 != null and backup1 != ''"> and backup1 = #{backup1} </if>
+		  		  <if test="backup2 != null and backup2 != ''"> and backup2 = #{backup2} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from design_type
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="discType != null and discType != ''"> and disc_type = #{discType} </if>
+		  		  <if test="cname != null and cname != ''"> and cname = #{cname} </if>
+		  		  <if test="evaDesc != null and evaDesc != ''"> and eva_desc = #{evaDesc} </if>
+		  		  <if test="ename != null and ename != ''"> and ename = #{ename} </if>
+		  		  <if test="behaChara != null and behaChara != ''"> and beha_chara = #{behaChara} </if>
+		  		  <if test="communicate != null and communicate != ''"> and communicate = #{communicate} </if>
+		  		  <if test="ability != null and ability != ''"> and ability = #{ability} </if>
+		  		  <if test="superiority != null and superiority != ''"> and superiority = #{superiority} </if>
+		  		  <if test="vulnerable != null and vulnerable != ''"> and vulnerable = #{vulnerable} </if>
+		  		  <if test="backup1 != null and backup1 != ''"> and backup1 = #{backup1} </if>
+		  		  <if test="backup2 != null and backup2 != ''"> and backup2 = #{backup2} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.dreamershaven.wechat.bean.DesignTypeDO" useGeneratedKeys="true" keyProperty="id">
+		insert into design_type
+		(
+			`disc_type`, 
+			`cname`, 
+			`eva_desc`, 
+			`ename`, 
+			`beha_chara`, 
+			`communicate`, 
+			`ability`, 
+			`superiority`, 
+			`vulnerable`, 
+			`backup1`, 
+			`backup2`
+		)
+		values
+		(
+			#{discType}, 
+			#{cname}, 
+			#{evaDesc}, 
+			#{ename}, 
+			#{behaChara}, 
+			#{communicate}, 
+			#{ability}, 
+			#{superiority}, 
+			#{vulnerable}, 
+			#{backup1}, 
+			#{backup2}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.dreamershaven.wechat.bean.DesignTypeDO">
+		update design_type 
+		<set>
+			<if test="discType != null">`disc_type` = #{discType}, </if>
+			<if test="cname != null">`cname` = #{cname}, </if>
+			<if test="evaDesc != null">`eva_desc` = #{evaDesc}, </if>
+			<if test="ename != null">`ename` = #{ename}, </if>
+			<if test="behaChara != null">`beha_chara` = #{behaChara}, </if>
+			<if test="communicate != null">`communicate` = #{communicate}, </if>
+			<if test="ability != null">`ability` = #{ability}, </if>
+			<if test="superiority != null">`superiority` = #{superiority}, </if>
+			<if test="vulnerable != null">`vulnerable` = #{vulnerable}, </if>
+			<if test="backup1 != null">`backup1` = #{backup1}, </if>
+			<if test="backup2 != null">`backup2` = #{backup2}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from design_type where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from design_type where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

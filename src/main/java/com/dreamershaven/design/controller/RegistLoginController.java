@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dreamershaven.design.service.UserService;
 import com.dreamershaven.design.vo.DesignUserVO;
 import com.dreamershaven.wechat.bean.DesignUserDO;
-import com.dreamershaven.wechat.controller.CoreController;
 import com.dreamershaven.wechat.util.IMoocJSONResult;
 import com.dreamershaven.wechat.util.MD5Utils;
 import com.dreamershaven.wechat.util.RedisOperator;
@@ -27,7 +26,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "用户注册登录的接口", tags = { "注册和登录的controller" })
 public class RegistLoginController extends BasicController {
 	// 增加日志
-	private static Logger log = LoggerFactory.getLogger(CoreController.class);
+	private static Logger log = LoggerFactory.getLogger(RegistLoginController.class);
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -62,14 +61,7 @@ public class RegistLoginController extends BasicController {
 	 * @param user
 	 * @return
 	 */
-	private DesignUserVO setUserTokenInfo(DesignUserDO user) {
-		String uuiqueToken = UUID.randomUUID().toString();
-		redis.set(USER_REDIS_SESSION + ":" + user.getUserId(), uuiqueToken, 1000 * 60 * 30);
-		DesignUserVO userVO = new DesignUserVO();
-		BeanUtils.copyProperties(user, userVO);
-		userVO.setUserToken(uuiqueToken);
-		return userVO;
-	}
+	
 
 	@ApiOperation(value = "用户登录", notes = "用户登录接口")
 	@PostMapping("/login")

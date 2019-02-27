@@ -4,15 +4,16 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.dreamershaven.wechat.util.SpringUtil;
+ 
 
 @EnableTransactionManagement
 @ServletComponentScan
@@ -25,14 +26,19 @@ import com.dreamershaven.wechat.util.SpringUtil;
 @EnableScheduling
 @Configuration
 @EnableAutoConfiguration // 自动加载配置信息
-public class WechatApplication {
-	//依据bean的名称获取bean,用于微信公众平台的管理员的管理操作
-	private static ApplicationContext applicationContext;
+public class WechatApplication extends SpringBootServletInitializer{
+	 
+	
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		
+		//applicationContext = SpringApplication.run(WechatApplication.class, null);
+		return builder.sources(WechatApplication.class);
+	}
 
 	public static void main(String[] args) {
 
-		applicationContext = SpringApplication.run(WechatApplication.class, args);
-		SpringUtil.setApplicationContext(applicationContext);
+		 SpringApplication.run(WechatApplication.class, args);
+		 
 		System.out.println("ヾ(◍°∇°◍)ﾉﾞ    dreamersHaven wechat模块启动成功      ヾ(◍°∇°◍)ﾉﾞ\n"
 				+ " ______                    _   ______            \n"
 				+ "|_   _ \\                  / |_|_   _ `.          \n"

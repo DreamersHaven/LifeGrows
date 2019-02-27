@@ -24,8 +24,8 @@ import com.dreamershaven.wechat.service.CustomerService;
 import com.dreamershaven.wechat.service.SpaceService;
 import com.dreamershaven.wechat.service.admin.IWXManagement;
 import com.dreamershaven.wechat.service.impl.CoreServiceImpl;
+import com.dreamershaven.wechat.util.ApplicationContextRegister;
 import com.dreamershaven.wechat.util.MessageUtil;
-import com.dreamershaven.wechat.util.SpringUtil;
 
 @Service("repMsgService")
 public class RepMsgServiceImpl implements RepMsgService {
@@ -146,7 +146,7 @@ public class RepMsgServiceImpl implements RepMsgService {
 					String[] strs = content.split(":", 6);
 					if (strs[0].equals(adminPassword)) {
 						log.info("#############管理员密码验证通过###############");
-						iWXManagement=(IWXManagement) SpringUtil.getBean(strs[1]);
+						iWXManagement=(IWXManagement) ApplicationContextRegister.getApplicationContext() .getBean(strs[1]);
 						respContent = iWXManagement.operation(strs);
 						textMessage.setContent(respContent);
 						respMessage = MessageUtil.textMessageToXml(textMessage);

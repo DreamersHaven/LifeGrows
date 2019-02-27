@@ -21,7 +21,7 @@ public class DesignUserVO implements Serializable {
 	
 	//
 	@ApiModelProperty(hidden=true)
-	private Long userId;
+	private String userId;
 	//用户名
 	@ApiModelProperty(value="用户名",name="username",example="dongyaxin",required=true)
 	
@@ -91,13 +91,13 @@ public class DesignUserVO implements Serializable {
 	/**
 	 * 设置：
 	 */
-	public void setUserId(Long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	/**
 	 * 获取：
 	 */
-	public Long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 	/**

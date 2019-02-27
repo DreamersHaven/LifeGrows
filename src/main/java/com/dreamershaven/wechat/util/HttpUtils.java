@@ -24,7 +24,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
@@ -57,8 +59,9 @@ public class HttpUtils {
         HttpGet request = new HttpGet();
         try {
             String url = buildUrl(reqUrl, params);
-            HttpClient client = new DefaultHttpClient();
-
+            
+            // 创建Httpclient对象
+            CloseableHttpClient client = HttpClients.createDefault();
             request.setHeader("Accept-Encoding", "gzip");
             request.setURI(new URI(url));
 

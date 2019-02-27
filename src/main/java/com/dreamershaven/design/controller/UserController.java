@@ -82,7 +82,7 @@ public class UserController extends BasicController {
 		}
 		
 		DesignUserDO user=new DesignUserDO();
-		user.setUserId(Long.valueOf(userId));
+		user.setUserId(userId);
 		user.setPicId(uploadPathDB);
 		userService.updateUserInfo(user);
 		

@@ -4,6 +4,12 @@ import com.dreamershaven.wechat.bean.DesignUserDO;
 
 public interface UserService {
 	/**
+	 *  判断用户微信ID是否已经保存
+	 * @param userWx
+	 * @return
+	 */
+	public DesignUserDO queryUserWxIsExist(String userWx);
+	/**
 	 * 判断用户名是否存在
 	 * @param username
 	 * @return

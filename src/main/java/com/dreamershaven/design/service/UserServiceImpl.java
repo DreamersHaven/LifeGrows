@@ -70,4 +70,17 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+
+	
+	public DesignUserDO queryUserWxIsExist(String userWx) {
+		//wxId
+		Map<String, Object> query = new HashMap<>(16);
+		query.put("wxId", userWx);
+		List<DesignUserDO> designUserDOs=designUserMapper.list(query);
+		if(designUserDOs!=null&&designUserDOs.size()>0) {
+			return designUserDOs.get(0);
+		}
+		return null;
+	}
+
 }

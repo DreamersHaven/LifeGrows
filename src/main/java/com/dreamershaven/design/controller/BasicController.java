@@ -1,8 +1,13 @@
 package com.dreamershaven.design.controller;
 
+import java.util.UUID;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dreamershaven.design.vo.DesignUserVO;
+import com.dreamershaven.wechat.bean.DesignUserDO;
 import com.dreamershaven.wechat.util.RedisOperator;
 
 
@@ -23,5 +28,14 @@ public class BasicController {
 	
 	// 每页分页的记录数
 	public static final Integer PAGE_SIZE = 5;
+	
+	public DesignUserVO setUserTokenInfo(DesignUserDO user) {
+		String uuiqueToken = UUID.randomUUID().toString();
+		redis.set(USER_REDIS_SESSION + ":" + user.getUserId(), uuiqueToken, 1000 * 60 * 30);
+		DesignUserVO userVO = new DesignUserVO();
+		BeanUtils.copyProperties(user, userVO);
+		userVO.setUserToken(uuiqueToken);
+		return userVO;
+	}
 	
 }

@@ -2,6 +2,7 @@ package com.dreamershaven.design.controller;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -43,6 +44,8 @@ public class DiscController {
 		log.info("用户："+discResult.getUserId()+",正在保存DISC测试结果:");
 		log.info("最符合的DISC："+discResult.getMresult()+"。");
 		
+		
+		
 		Date date = new Date();
 		Timestamp timeStamep = new Timestamp(date.getTime());
 		discResult.setGmtCreate(timeStamep);
@@ -61,6 +64,20 @@ public class DiscController {
 		}
 		
 		DesignResultDO descInfo = discService.queryUserDISCInfo(userId);
+		return IMoocJSONResult.ok(descInfo);
+	}
+	
+	@ApiOperation(value="查询用户DISC测试历史信息", notes="查询用户DISC测试历史信息的接口")
+	@ApiImplicitParam(name="userId", value="用户id", required=true, 
+						dataType="String", paramType="query")
+	@PostMapping("/queryDiscHistoryResult")
+	public IMoocJSONResult queryDiscHistoryResult(String userId) throws Exception {
+		
+		if (StringUtils.isBlank(userId)) {
+			return IMoocJSONResult.errorMsg("用户id不能为空...");
+		}
+		
+		List<DesignResultDO> descInfo = discService.queryUserDISCInfos(userId);
 		return IMoocJSONResult.ok(descInfo);
 	}
 }

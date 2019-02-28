@@ -1,5 +1,7 @@
 package com.dreamershaven.design.service;
 
+import java.util.List;
+
 import com.dreamershaven.wechat.bean.DesignResultDO;
 
 /**
@@ -20,6 +22,12 @@ public interface DiscService {
 	 * @return
 	 */
 	public DesignResultDO queryUserDISCInfo(String userId);
-	
+
+	/**
+	 * 查询用户所有DISC结果信息列表
+	 * @param userId
+	 * @return
+	 */
+	public List<DesignResultDO> queryUserDISCInfos(String userId);
 	
 }

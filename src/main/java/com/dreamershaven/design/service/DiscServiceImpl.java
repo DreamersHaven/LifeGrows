@@ -25,8 +25,9 @@ public class DiscServiceImpl implements DiscService {
 		//依据DISC结果，确定DISC类型，并存储到数据库中
 		List<DesignResultDO> designResultDOs=this.queryUserDISCInfos(designResultDO.getUserId().toString());
 		//每个用户最多保存9条记录
-		if(designResultDOs!=null&&designResultDOs.size()>9) {
-			DesignResultDO designResultDOtemp=(DesignResultDO)designResultDOs.get(0);
+		if(designResultDOs!=null&&designResultDOs.size()>=9) {
+			
+			DesignResultDO designResultDOtemp=(DesignResultDO)designResultDOs.get(8);
 			designResultMapper.remove(designResultDOtemp.getId());
 		}
 		DesignTypeDO designTypeDO=discTypeService.queryUserDISCInfo(designResultDO.getYvalue(), designResultDO.getMresult(), "M");
@@ -62,6 +63,14 @@ public class DiscServiceImpl implements DiscService {
 		}
 			
 		return null;
+	}
+
+
+	@Override
+	public boolean delDiscHistoryResult(String id) {
+		Long resultid=Long.parseLong(id);
+		designResultMapper.remove(resultid);
+		return true;
 	}
 
 }

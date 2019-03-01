@@ -80,4 +80,25 @@ public class DiscController {
 		List<DesignResultDO> descInfo = discService.queryUserDISCInfos(userId);
 		return IMoocJSONResult.ok(descInfo);
 	}
+	
+	
+	
+	@ApiOperation(value="删除某条用户DISC测试历史信息", notes="删除某条DISC测试历史信息的接口")
+	@ApiImplicitParam(name="id", value="测试记录ID", required=true, 
+						dataType="String", paramType="query")
+	@PostMapping("/delDiscHistoryResult")
+	public IMoocJSONResult delDiscHistoryResult(String id) throws Exception {
+		
+		if (StringUtils.isBlank(id)) {
+			return IMoocJSONResult.errorMsg("测试报告id不能为空...");
+		}
+		
+		boolean result = discService.delDiscHistoryResult(id);
+		if(result) {
+			return IMoocJSONResult.ok("操作成功");
+		}else {
+			return IMoocJSONResult.errorMsg("删除操作执行出错，请稍后再试");
+		}
+		
+	}
 }

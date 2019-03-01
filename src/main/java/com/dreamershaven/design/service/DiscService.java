@@ -29,5 +29,11 @@ public interface DiscService {
 	 * @return
 	 */
 	public List<DesignResultDO> queryUserDISCInfos(String userId);
+	/**
+	 * 删除某条历史测试报告
+	 * @param id
+	 * @return
+	 */
+	public boolean delDiscHistoryResult(String id);
 	
 }

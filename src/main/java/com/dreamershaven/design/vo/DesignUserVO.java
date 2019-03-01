@@ -68,7 +68,7 @@ public class DesignUserVO implements Serializable {
 	private Date birth;
 	//
 	@ApiModelProperty(hidden=true)
-	private Long picId;
+	private String picId;
 	//现居住地
 	@ApiModelProperty(hidden=true)
 	private String liveAddress;
@@ -247,13 +247,13 @@ public class DesignUserVO implements Serializable {
 	/**
 	 * 设置：
 	 */
-	public void setPicId(Long picId) {
+	public void setPicId(String picId) {
 		this.picId = picId;
 	}
 	/**
 	 * 获取：
 	 */
-	public Long getPicId() {
+	public String getPicId() {
 		return picId;
 	}
 	/**

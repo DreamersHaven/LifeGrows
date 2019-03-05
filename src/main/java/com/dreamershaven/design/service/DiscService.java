@@ -36,4 +36,6 @@ public interface DiscService {
 	 */
 	public boolean delDiscHistoryResult(String id);
 	
+	
+	
 }

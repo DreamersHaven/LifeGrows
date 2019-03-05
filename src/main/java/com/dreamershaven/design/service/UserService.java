@@ -1,5 +1,7 @@
 package com.dreamershaven.design.service;
 
+import java.util.List;
+
 import com.dreamershaven.wechat.bean.DesignUserDO;
 
 public interface UserService {
@@ -38,4 +40,10 @@ public interface UserService {
 	 * @return
 	 */
 	public DesignUserDO queryUserInfo(String userId);
+	/**
+	 * 依据相应的查询条件获取用户列表信息
+	 * @param user
+	 * @return
+	 */
+	public List<DesignUserDO> queryUserList(DesignUserDO user);
 }

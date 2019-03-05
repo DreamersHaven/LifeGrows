@@ -83,4 +83,20 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+
+	
+	public List<DesignUserDO> queryUserList(DesignUserDO user) {
+		//如果依据用户名进行查询
+		Map<String, Object> query = new HashMap<>(16);
+		
+		if(user.getUsername()!=null&&!"".equals(user.getUsername())) {
+			query.put("username", user.getUsername());
+		}
+		List<DesignUserDO> designUserDOs=designUserMapper.list(query);
+		if(designUserDOs!=null&&designUserDOs.size()>0) {
+			return designUserDOs;
+		}
+		return null;
+	}
+
 }

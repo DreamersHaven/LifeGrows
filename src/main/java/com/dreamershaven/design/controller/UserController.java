@@ -3,6 +3,7 @@ package com.dreamershaven.design.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -103,6 +104,15 @@ public class UserController extends BasicController {
 		
 		DesignUserDO userInfo = userService.queryUserInfo(userId);
 		return IMoocJSONResult.ok(userInfo);
+	}
+	
+	@ApiOperation(value="高级查询用户信息", notes="高级用户信息的接口")
+	@ApiImplicitParam(name="userId", value="用户id", required=true, 
+						dataType="String", paramType="query")
+	@PostMapping("/queryUsers")
+	public IMoocJSONResult queryUsers(DesignUserDO user) throws Exception {		
+		List<DesignUserDO> userList= userService.queryUserList(user);
+		return IMoocJSONResult.ok(userList);
 	}
 	
 	

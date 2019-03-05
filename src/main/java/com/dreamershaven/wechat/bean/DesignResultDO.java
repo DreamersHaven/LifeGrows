@@ -1,6 +1,7 @@
 package com.dreamershaven.wechat.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import io.swagger.annotations.ApiModel;
@@ -43,6 +44,11 @@ public class DesignResultDO implements Serializable {
 	//创建时间
 	@ApiModelProperty(hidden=true)
 	private Date gmtCreate;
+	//创建时间(字符串格式)
+	@ApiModelProperty(hidden=true)
+	private String gmtCreateStr;
+	
+	
 	// 状态
 	@ApiModelProperty(hidden=true)
 	private Integer status;
@@ -157,12 +163,21 @@ public class DesignResultDO implements Serializable {
 	 */
 	public void setGmtCreate(Date gmtCreate) {
 		this.gmtCreate = gmtCreate;
+		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
+		this.setGmtCreateStr(formatter.format(gmtCreate));
 	}
 	/**
 	 * 获取：创建时间
 	 */
 	public Date getGmtCreate() {
 		return gmtCreate;
+	}
+	
+	public String getGmtCreateStr() {
+		return gmtCreateStr;
+	}
+	public void setGmtCreateStr(String gmtCreateStr) {
+		this.gmtCreateStr = gmtCreateStr;
 	}
 	/**
 	 * 设置： 状态

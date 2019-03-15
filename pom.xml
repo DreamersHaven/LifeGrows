@@ -9,12 +9,12 @@
 	<name>dreamershaven</name>
 	<description>dreamershaven project for Spring Boot</description>
 	<packaging>war</packaging>
-	
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.3.RELEASE</version>
-		
+
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -25,7 +25,7 @@
 	</properties>
 
 	<dependencies>
-	
+
 		<!--打war包：因配置外部TOMCAT 而配置 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -143,10 +143,18 @@
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
+		<!-- 添加分页控件 -->
+
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus</artifactId>
+			<version>3.0-beta</version>
+		</dependency>
+
 	</dependencies>
-	 
-	
-	<!--  打jar所需配置-->
+
+
+	<!-- 打jar所需配置 -->
 	<build>
 		<plugins>
 			<plugin>
@@ -185,7 +193,7 @@
 
 		</plugins>
 	</build>
-	
- 
-	 
+
+
+
 </project>

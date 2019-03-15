@@ -1,124 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.dreamershaven.wechat.mapper.DesignUserMapper">
+<mapper
+	namespace="com.dreamershaven.wechat.mapper.DesignUserMapper">
 
-	<select id="get" resultType="com.dreamershaven.wechat.bean.DesignUserDO">
-		select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district`,`wx_id` from design_user where user_id = #{value}
+	<select id="get"
+		resultType="com.dreamershaven.wechat.bean.DesignUserDO">
+		select
+		`user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district`,`wx_id`
+		from design_user where user_id = #{value}
+	</select>
+	
+	<!-- 实现分页查询 -->
+	<select id="selectPageExt"
+		resultType="com.dreamershaven.wechat.bean.DesignUserDO">
+		select
+		`user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district`,`wx_id`
+		from design_user
 	</select>
 
-	<select id="list" resultType="com.dreamershaven.wechat.bean.DesignUserDO">
-		select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district`,`wx_id` from design_user
-        <where>  
-		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
-		  		  <if test="username != null and username != ''"> and username = #{username} </if>
-		  		  <if test="name != null and name != ''"> and name = #{name} </if>
-		  		  <if test="password != null and password != ''"> and password = #{password} </if>
-		  		  <if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
-		  		  <if test="email != null and email != ''"> and email = #{email} </if>
-		  		  <if test="mobile != null and mobile != ''"> and mobile = #{mobile} </if>
-		  		  <if test="status != null and status != ''"> and status = #{status} </if>
-		  		  <if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>
-		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
-		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
-		  		  <if test="sex != null and sex != ''"> and sex = #{sex} </if>
-		  		  <if test="birth != null and birth != ''"> and birth = #{birth} </if>
-		  		  <if test="picId != null and picId != ''"> and pic_id = #{picId} </if>
-		  		  <if test="liveAddress != null and liveAddress != ''"> and live_address = #{liveAddress} </if>
-		  		  <if test="hobby != null and hobby != ''"> and hobby = #{hobby} </if>
-		  		  <if test="province != null and province != ''"> and province = #{province} </if>
-		  		  <if test="city != null and city != ''"> and city = #{city} </if>
-		  		  <if test="district != null and district != ''"> and district = #{district} </if>
-		  		  <if test="wxId != null and wxId != ''"> and wx_id = #{wxId} </if>
-		  		</where>
-        <choose>
-            <when test="sort != null and sort.trim() != ''">
-                order by ${sort} ${order}
-            </when>
+	<select id="list"
+		resultType="com.dreamershaven.wechat.bean.DesignUserDO">
+		select
+		`user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district`,`wx_id`
+		from design_user
+		<where>
+			<if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+			<if test="username != null and username != ''"> and username = #{username} </if>
+			<if test="name != null and name != ''"> and name = #{name} </if>
+			<if test="password != null and password != ''"> and password = #{password} </if>
+			<if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
+			<if test="email != null and email != ''"> and email = #{email} </if>
+			<if test="mobile != null and mobile != ''"> and mobile = #{mobile} </if>
+			<if test="status != null and status != ''"> and status = #{status} </if>
+			<if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>
+			<if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+			<if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+			<if test="sex != null and sex != ''"> and sex = #{sex} </if>
+			<if test="birth != null and birth != ''"> and birth = #{birth} </if>
+			<if test="picId != null and picId != ''"> and pic_id = #{picId} </if>
+			<if test="liveAddress != null and liveAddress != ''"> and live_address = #{liveAddress} </if>
+			<if test="hobby != null and hobby != ''"> and hobby = #{hobby} </if>
+			<if test="province != null and province != ''"> and province = #{province} </if>
+			<if test="city != null and city != ''"> and city = #{city} </if>
+			<if test="district != null and district != ''"> and district = #{district} </if>
+			<if test="wxId != null and wxId != ''"> and wx_id = #{wxId} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
 			<otherwise>
-                order by user_id desc
+				order by user_id desc
 			</otherwise>
-        </choose>
+		</choose>
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>
 	</select>
-	
- 	<select id="count" resultType="int">
+
+	<select id="count" resultType="int">
 		select count(*) from design_user
-		 <where>  
-		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
-		  		  <if test="username != null and username != ''"> and username = #{username} </if>
-		  		  <if test="name != null and name != ''"> and name = #{name} </if>
-		  		  <if test="password != null and password != ''"> and password = #{password} </if>
-		  		  <if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
-		  		  <if test="email != null and email != ''"> and email = #{email} </if>
-		  		  <if test="mobile != null and mobile != ''"> and mobile = #{mobile} </if>
-		  		  <if test="status != null and status != ''"> and status = #{status} </if>
-		  		  <if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>
-		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
-		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
-		  		  <if test="sex != null and sex != ''"> and sex = #{sex} </if>
-		  		  <if test="birth != null and birth != ''"> and birth = #{birth} </if>
-		  		  <if test="picId != null and picId != ''"> and pic_id = #{picId} </if>
-		  		  <if test="liveAddress != null and liveAddress != ''"> and live_address = #{liveAddress} </if>
-		  		  <if test="hobby != null and hobby != ''"> and hobby = #{hobby} </if>
-		  		  <if test="province != null and province != ''"> and province = #{province} </if>
-		  		  <if test="city != null and city != ''"> and city = #{city} </if>
-		  		  <if test="district != null and district != ''"> and district = #{district} </if>
-		  		  <if test="wxId != null and wxId != ''"> and wx_id = #{wxId} </if>
-		  		</where>
+		<where>
+			<if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+			<if test="username != null and username != ''"> and username = #{username} </if>
+			<if test="name != null and name != ''"> and name = #{name} </if>
+			<if test="password != null and password != ''"> and password = #{password} </if>
+			<if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
+			<if test="email != null and email != ''"> and email = #{email} </if>
+			<if test="mobile != null and mobile != ''"> and mobile = #{mobile} </if>
+			<if test="status != null and status != ''"> and status = #{status} </if>
+			<if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>
+			<if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+			<if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+			<if test="sex != null and sex != ''"> and sex = #{sex} </if>
+			<if test="birth != null and birth != ''"> and birth = #{birth} </if>
+			<if test="picId != null and picId != ''"> and pic_id = #{picId} </if>
+			<if test="liveAddress != null and liveAddress != ''"> and live_address = #{liveAddress} </if>
+			<if test="hobby != null and hobby != ''"> and hobby = #{hobby} </if>
+			<if test="province != null and province != ''"> and province = #{province} </if>
+			<if test="city != null and city != ''"> and city = #{city} </if>
+			<if test="district != null and district != ''"> and district = #{district} </if>
+			<if test="wxId != null and wxId != ''"> and wx_id = #{wxId} </if>
+		</where>
 	</select>
-	 
-	<insert id="save" parameterType="com.dreamershaven.wechat.bean.DesignUserDO" useGeneratedKeys="true" keyProperty="userId">
+
+	<insert id="save"
+		parameterType="com.dreamershaven.wechat.bean.DesignUserDO"
+		useGeneratedKeys="true" keyProperty="userId">
 		insert into design_user
 		(
-			`username`, 
-			`name`, 
-			`password`, 
-			`dept_id`, 
-			`email`, 
-			`mobile`, 
-			`status`, 
-			`user_id_create`, 
-			`gmt_create`, 
-			`gmt_modified`, 
-			`sex`, 
-			`birth`, 
-			`pic_id`, 
-			`live_address`, 
-			`hobby`, 
-			`province`, 
-			`city`, 
-			`district`, 
-			`wx_id`
+		`username`,
+		`name`,
+		`password`,
+		`dept_id`,
+		`email`,
+		`mobile`,
+		`status`,
+		`user_id_create`,
+		`gmt_create`,
+		`gmt_modified`,
+		`sex`,
+		`birth`,
+		`pic_id`,
+		`live_address`,
+		`hobby`,
+		`province`,
+		`city`,
+		`district`,
+		`wx_id`
 		)
 		values
 		(
-			#{username}, 
-			#{name}, 
-			#{password}, 
-			#{deptId}, 
-			#{email}, 
-			#{mobile}, 
-			#{status}, 
-			#{userIdCreate}, 
-			#{gmtCreate}, 
-			#{gmtModified}, 
-			#{sex}, 
-			#{birth}, 
-			#{picId}, 
-			#{liveAddress}, 
-			#{hobby}, 
-			#{province}, 
-			#{city}, 
-			#{district}, 
-			#{wxId}
+		#{username},
+		#{name},
+		#{password},
+		#{deptId},
+		#{email},
+		#{mobile},
+		#{status},
+		#{userIdCreate},
+		#{gmtCreate},
+		#{gmtModified},
+		#{sex},
+		#{birth},
+		#{picId},
+		#{liveAddress},
+		#{hobby},
+		#{province},
+		#{city},
+		#{district},
+		#{wxId}
 		)
 	</insert>
-	 
-	<update id="update" parameterType="com.dreamershaven.wechat.bean.DesignUserDO">
-		update design_user 
+
+	<update id="update"
+		parameterType="com.dreamershaven.wechat.bean.DesignUserDO">
+		update design_user
 		<set>
 			<if test="username != null">`username` = #{username}, </if>
 			<if test="name != null">`name` = #{name}, </if>
@@ -142,14 +160,15 @@
 		</set>
 		where user_id = #{userId}
 	</update>
-	
+
 	<delete id="remove">
 		delete from design_user where user_id = #{value}
 	</delete>
-	
+
 	<delete id="batchRemove">
-		delete from design_user where user_id in 
-		<foreach item="userId" collection="array" open="(" separator="," close=")">
+		delete from design_user where user_id in
+		<foreach item="userId" collection="array" open="("
+			separator="," close=")">
 			#{userId}
 		</foreach>
 	</delete>

@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableCaching
 //@ComponentScan(basePackages= {"com.example.demo.controller","com.example.demo.service"})
-@MapperScan(basePackages = { "com.dreamershaven.wechat.mapper" })
+@MapperScan(basePackages = { "com.dreamershaven.wechat.mapper","com.dreamershaven.design.config" })
 //@EnableAutoConfiguration
 @EnableAsync
 @EnableScheduling

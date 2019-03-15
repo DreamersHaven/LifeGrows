@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dreamershaven.wechat.bean.DesignUserDO;
 import com.dreamershaven.wechat.mapper.DesignUserMapper;
 
@@ -89,7 +90,7 @@ public class UserServiceImpl implements UserService {
 		//如果依据用户名进行查询
 		Map<String, Object> query = new HashMap<>(16);
 		
-		if(user.getUsername()!=null&&!"".equals(user.getUsername())) {
+		if(user!=null&&user.getUsername()!=null&&!"".equals(user.getUsername())) {
 			query.put("username", user.getUsername());
 		}
 		List<DesignUserDO> designUserDOs=designUserMapper.list(query);
@@ -98,5 +99,17 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;
 	}
+
+
+	public IPage<DesignUserDO> selectPageExt(DesignUserDO user, int page, int pageSize) throws RuntimeException {
+	    try {
+	        Page<DesignUserDO> p = new Page<>(page, pageSize);
+	        p.setRecords(designUserMapper.selectPageExt(p, user));
+	        return p;
+	    } catch (Exception e) {
+	        throw new RuntimeException(e.getMessage());
+	    }
+	}
+
 
 }

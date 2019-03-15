@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dreamershaven.wechat.bean.DesignUserDO;
 
 /**
@@ -29,4 +31,6 @@ public interface DesignUserMapper {
 	int remove(Long user_id);
 	
 	int batchRemove(Long[] userIds);
+	
+	List<DesignUserDO> selectPageExt(Page<DesignUserDO> page,@Param("user") DesignUserDO user );
 }

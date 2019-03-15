@@ -2,6 +2,7 @@ package com.dreamershaven.design.service;
 
 import java.util.List;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.dreamershaven.wechat.bean.DesignUserDO;
 
 public interface UserService {
@@ -46,4 +47,9 @@ public interface UserService {
 	 * @return
 	 */
 	public List<DesignUserDO> queryUserList(DesignUserDO user);
+	/**
+	 * 分页查询用户信息
+	 * @return
+	 */
+	IPage<DesignUserDO> selectPageExt(DesignUserDO user,int page,int pagaSize);
 }

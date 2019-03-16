@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dreamershaven.design.contant.DiscContant;
 import com.dreamershaven.design.service.UserService;
 import com.dreamershaven.design.vo.DesignUserVO;
 import com.dreamershaven.wechat.bean.DesignUserDO;
@@ -43,6 +44,10 @@ public class RegistLoginController extends BasicController {
 		boolean uernameIsExist = userService.queryUsernameIsExist(user.getUsername());
 		if (!uernameIsExist) {
 			user.setPassword(MD5Utils.getMD5Str(user.getPassword()));
+			//如果用户没有设置头像信息，设置默认的头像信息
+			if(user.getPicId()==null||"".equals(user.getPicId())) {
+				user.setPicId(DiscContant.NONE_FACE);
+			}
 			userService.saveUser(user);
 		} else {
 			return IMoocJSONResult.errorMsg("用户名已经存在，请换一个试试~");

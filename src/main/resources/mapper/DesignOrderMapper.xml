@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dreamershaven.wechat.mapper.DesignOrderMapper">
+
+	<select id="get" resultType="com.dreamershaven.wechat.bean.DesignOrderDO">
+		select `user_id`,`username`,`status`,`gmt_create`,`wx_id`,`order_id`,`payment`,`order_num`,`consumer_item` from design_order where order_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.dreamershaven.wechat.bean.DesignOrderDO">
+		select `user_id`,`username`,`status`,`gmt_create`,`wx_id`,`order_id`,`payment`,`order_num`,`consumer_item` from design_order
+        <where>  
+		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+		  		  <if test="username != null and username != ''"> and username = #{username} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="wxId != null and wxId != ''"> and wx_id = #{wxId} </if>
+		  		  <if test="orderId != null and orderId != ''"> and order_id = #{orderId} </if>
+		  		  <if test="payment != null and payment != ''"> and payment = #{payment} </if>
+		  		  <if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>
+		  		  <if test="consumerItem != null and consumerItem != ''"> and consumer_item = #{consumerItem} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by order_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from design_order
+		 <where>  
+		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+		  		  <if test="username != null and username != ''"> and username = #{username} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="wxId != null and wxId != ''"> and wx_id = #{wxId} </if>
+		  		  <if test="orderId != null and orderId != ''"> and order_id = #{orderId} </if>
+		  		  <if test="payment != null and payment != ''"> and payment = #{payment} </if>
+		  		  <if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>
+		  		  <if test="consumerItem != null and consumerItem != ''"> and consumer_item = #{consumerItem} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.dreamershaven.wechat.bean.DesignOrderDO" useGeneratedKeys="true" keyProperty="orderId">
+		insert into design_order
+		(
+			`user_id`, 
+			`username`, 
+			`status`, 
+			`gmt_create`, 
+			`wx_id`, 
+			`payment`, 
+			`order_num`, 
+			`consumer_item`
+		)
+		values
+		(
+			#{userId}, 
+			#{username}, 
+			#{status}, 
+			#{gmtCreate}, 
+			#{wxId}, 
+			#{payment}, 
+			#{orderNum}, 
+			#{consumerItem}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.dreamershaven.wechat.bean.DesignOrderDO">
+		update design_order 
+		<set>
+			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="username != null">`username` = #{username}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="wxId != null">`wx_id` = #{wxId}, </if>
+			<if test="payment != null">`payment` = #{payment}, </if>
+			<if test="orderNum != null">`order_num` = #{orderNum}, </if>
+			<if test="consumerItem != null">`consumer_item` = #{consumerItem}</if>
+		</set>
+		where order_id = #{orderId}
+	</update>
+	
+	<delete id="remove">
+		delete from design_order where order_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from design_order where order_id in 
+		<foreach item="orderId" collection="array" open="(" separator="," close=")">
+			#{orderId}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -55,6 +55,19 @@
 		  		  <if test="discType != null and discType != ''"> and disc_type = #{discType} </if>
 		  		</where>
 	</select>
+	
+	<select id="countNums" resultType="com.dreamershaven.design.vo.DiscStatByDiscTypeVO">
+		select count(id) num,disc_type from design_result group by disc_type;
+	</select>
+	
+	<!--  
+	<resultMap id="BaseResultMap" type="Map">
+		<result column="disc_type" property="discTpye" jdbcType="String" />
+		<result column="num" property="num" jdbcType="INTEGER" />
+	</resultMap>
+	-->
+	
+ 
 	 
 	<insert id="save" parameterType="com.dreamershaven.wechat.bean.DesignResultDO" useGeneratedKeys="true" keyProperty="id">
 		insert into design_result

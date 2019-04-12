@@ -29,7 +29,7 @@ public class SwitchDO implements Serializable {
 	private String keyname;
 	//开关（0：关闭；1：打开）
 	@ApiModelProperty(value="开关值",name="isopen",example="1",required=true)
-	private String isopen;
+	private Boolean isopen;
 
 	/**
 	 * 设置：开关英文名称
@@ -70,13 +70,13 @@ public class SwitchDO implements Serializable {
 	/**
 	 * 设置：开关（0：关闭；1：打开）
 	 */
-	public void setIsopen(String isopen) {
+	public void setIsopen(Boolean isopen) {
 		this.isopen = isopen;
 	}
 	/**
 	 * 获取：开关（0：关闭；1：打开）
 	 */
-	public String getIsopen() {
+	public Boolean getIsopen() {
 		return isopen;
 	}
 }

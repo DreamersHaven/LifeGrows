@@ -29,4 +29,12 @@ public interface SwitchService {
 	int batchRemove(Integer[] ids);
 	
 	int updateOpenState(SwitchDO switchdo);
+	/**
+	 * 判断某个系统开关的状态
+	 * @param keyValue
+	 * @return
+	 */
+	Boolean isopen(String keyValue);
+	
+	
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.dreamershaven.design.vo.DiscStatByDiscTypeVO;
 import com.dreamershaven.wechat.bean.DesignResultDO;
 
 /**
@@ -29,4 +30,9 @@ public interface DesignResultMapper {
 	int remove(Long id);
 	
 	int batchRemove(Long[] ids);
+	/**
+	 * 获得不同类型的数目：例如：D 创建者  30人；
+	 * @return
+	 */
+	public List<DiscStatByDiscTypeVO> countNums();
 }

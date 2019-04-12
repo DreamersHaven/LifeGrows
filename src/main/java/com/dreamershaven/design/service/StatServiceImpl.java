@@ -1,8 +1,11 @@
 package com.dreamershaven.design.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dreamershaven.design.vo.DiscStatByDiscTypeVO;
 import com.dreamershaven.design.vo.DiscStatVO;
 import com.dreamershaven.wechat.mapper.DesignResultMapper;
 import com.dreamershaven.wechat.mapper.DesignUserMapper;
@@ -21,6 +24,13 @@ public class StatServiceImpl implements StatService{
 		discStatVO.setUsersNum(usersNum);
 		
 		return discStatVO;
+	}
+	
+	@Override
+	public List<DiscStatByDiscTypeVO> countNumsGroupByDiscType() {
+		List<DiscStatByDiscTypeVO> discStatByDiscTypeVOs=designResultMapper.countNums();
+		
+		return discStatByDiscTypeVOs;
 	}
 
 }

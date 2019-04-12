@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dreamershaven.design.vo.DiscStatByDiscTypeVO;
 import com.dreamershaven.wechat.bean.DesignResultDO;
 import com.dreamershaven.wechat.bean.DesignTypeDO;
 import com.dreamershaven.wechat.mapper.DesignResultMapper;
@@ -72,5 +73,8 @@ public class DiscServiceImpl implements DiscService {
 		designResultMapper.remove(resultid);
 		return true;
 	}
+
+
+	
 
 }

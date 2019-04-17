@@ -6,6 +6,9 @@
 	<select id="get" resultType="com.dreamershaven.wechat.bean.DesignResultDO">
 		select `id`,`user_id`,`username`,`in_pic_id`,`out_pic_id`,`pre_pic_id`,`eva_desc`,`gmt_create`,`status`,`mresult`,`lresult`,`aresult`,`disc_type`,`yvalue` from design_result where id = #{value}
 	</select>
+	
+	
+	
 
 	<select id="list" resultType="com.dreamershaven.wechat.bean.DesignResultDO">
 		select `id`,`user_id`,`username`,`in_pic_id`,`out_pic_id`,`pre_pic_id`,`eva_desc`,`gmt_create`,`status`,`mresult`,`lresult`,`aresult`,`disc_type`,`yvalue` from design_result

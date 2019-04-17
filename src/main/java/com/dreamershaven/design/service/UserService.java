@@ -52,4 +52,11 @@ public interface UserService {
 	 * @return
 	 */
 	IPage<DesignUserDO> selectPageExt(DesignUserDO user,int page,int pagaSize);
+	
+	/**
+	 * 查询某种类型下的所有用户信息
+	 * @param discType
+	 * @return
+	 */
+	public List<DesignUserDO> queryDISCInfosByDiscType(String discType);
 }

@@ -33,4 +33,8 @@ public interface DesignUserMapper {
 	int batchRemove(Long[] userIds);
 	
 	List<DesignUserDO> selectPageExt(Page<DesignUserDO> page,@Param("user") DesignUserDO user );
+	
+	List<DesignUserDO> getUserInfos(String discType);
+	
+	
 }

@@ -102,6 +102,14 @@ public class UserController extends BasicController {
 		return IMoocJSONResult.ok(userInfo);
 	}
 
+	@ApiOperation(value = "依据测试类型查询用户信息", notes = "依据测试类型查询用户信息的接口")
+	@ApiImplicitParam(name = "discType", value = "测试类型", required = true, dataType = "String", paramType = "query")
+	@PostMapping("/queryUserInfoByDiscType")
+	public IMoocJSONResult queryUserInfoByDiscType(String discType) throws Exception {
+
+		List<DesignUserDO> userInfos = userService.queryDISCInfosByDiscType(discType);
+		return IMoocJSONResult.ok(userInfos);
+	}
 	@ApiOperation(value = "高级查询用户信息", notes = "高级用户信息的接口")
 	@ApiImplicitParam(name = "userId", value = "用户id", required = true, dataType = "String", paramType = "query")
 	@PostMapping("/queryUsers")

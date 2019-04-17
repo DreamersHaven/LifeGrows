@@ -10,6 +10,11 @@
 		`user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district`,`wx_id`
 		from design_user where user_id = #{value}
 	</select>
+	
+	<select id="getUserInfos" resultType="com.dreamershaven.wechat.bean.DesignUserDO">
+		select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district`,`wx_id`
+		from design_user a where EXISTS (select user_id from design_result b where a.user_id=b.user_id and b.disc_type=#{value})
+	</select>
 
 	<!-- 实现分页查询 -->
 	<select id="selectPageExt"

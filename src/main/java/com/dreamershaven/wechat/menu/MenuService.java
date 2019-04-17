@@ -1,7 +1,8 @@
 package com.dreamershaven.wechat.menu;
 
-import net.sf.json.JSONObject;
 import java.util.Map;
+
+import net.sf.json.JSONObject;
 
 
 public interface MenuService {

@@ -1,7 +1,6 @@
 package com.dreamershaven.wechat.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
 
 

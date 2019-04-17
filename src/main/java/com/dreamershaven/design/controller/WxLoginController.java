@@ -17,7 +17,6 @@ import com.dreamershaven.design.vo.WxUserVO;
 import com.dreamershaven.wechat.bean.DesignUserDO;
 import com.dreamershaven.wechat.util.HttpUtils;
 import com.dreamershaven.wechat.util.IMoocJSONResult;
-import com.dreamershaven.wechat.util.RedisOperator;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,9 +35,6 @@ public class WxLoginController extends BasicController {
 		private static Logger log = LoggerFactory.getLogger(WxLoginController.class);
 		@Autowired
 		private UserService userService;
-		@Autowired
-		private RedisOperator redis;
-	   
 		@ApiOperation(value = "用户注册", notes = "用户注册接口")
 		@PostMapping("/wxlogin")
 		public IMoocJSONResult login(@RequestBody WxUserVO user) throws Exception {

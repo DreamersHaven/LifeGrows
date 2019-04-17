@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dreamershaven.wechat.mapper.DesignCollectMapper">
+
+	<select id="get" resultType="com.dreamershaven.wechat.bean.DesignCollectDO">
+		select `id`,`user_id`,`collectreport_id`,`report_type`,`collectuser_id`,`collectuser_name` from design_collect where id = #{value}
+	</select>
+	
+	<select id="getUserInfosByCollect" resultType="com.dreamershaven.wechat.bean.DesignUserDO">
+		select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district`,`wx_id`
+		from design_user a where EXISTS (select collectuser_id from design_collect b where a.user_id=b.collectuser_id and b.user_id=#{value})
+	</select>
+
+	<select id="list" resultType="com.dreamershaven.wechat.bean.DesignCollectDO">
+		select `id`,`user_id`,`collectreport_id`,`report_type`,`collectuser_id`,`collectuser_name` from design_collect
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+		  		  <if test="collectreportId != null and collectreportId != ''"> and collectreport_id = #{collectreportId} </if>
+		  		  <if test="reportType != null and reportType != ''"> and report_type = #{reportType} </if>
+		  		  <if test="collectuserId != null and collectuserId != ''"> and collectuser_id = #{collectuserId} </if>
+		  		  <if test="collectuserName != null and collectuserName != ''"> and collectuser_name = #{collectuserName} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from design_collect
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+		  		  <if test="collectreportId != null and collectreportId != ''"> and collectreport_id = #{collectreportId} </if>
+		  		  <if test="reportType != null and reportType != ''"> and report_type = #{reportType} </if>
+		  		  <if test="collectuserId != null and collectuserId != ''"> and collectuser_id = #{collectuserId} </if>
+		  		  <if test="collectuserName != null and collectuserName != ''"> and collectuser_name = #{collectuserName} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.dreamershaven.wechat.bean.DesignCollectDO" useGeneratedKeys="true" keyProperty="id">
+		insert into design_collect
+		(
+			`user_id`, 
+			`collectreport_id`, 
+			`report_type`, 
+			`collectuser_id`, 
+			`collectuser_name`
+		)
+		values
+		(
+			#{userId}, 
+			#{collectreportId}, 
+			#{reportType}, 
+			#{collectuserId}, 
+			#{collectuserName}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.dreamershaven.wechat.bean.DesignCollectDO">
+		update design_collect 
+		<set>
+			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="collectreportId != null">`collectreport_id` = #{collectreportId}, </if>
+			<if test="reportType != null">`report_type` = #{reportType}, </if>
+			<if test="collectuserId != null">`collectuser_id` = #{collectuserId}, </if>
+			<if test="collectuserName != null">`collectuser_name` = #{collectuserName}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from design_collect where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from design_collect where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

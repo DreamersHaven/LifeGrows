@@ -2,7 +2,6 @@ package com.dreamershaven.design.service;
 
 import java.util.List;
 
-import com.dreamershaven.design.vo.DiscStatByDiscTypeVO;
 import com.dreamershaven.wechat.bean.DesignResultDO;
 
 /**
@@ -36,6 +35,10 @@ public interface DiscService {
 	 * @return
 	 */
 	public boolean delDiscHistoryResult(String id);
+	
+	
+	
+	
 	
 	
 	

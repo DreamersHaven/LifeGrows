@@ -112,4 +112,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 
+	/**
+	 * 依据测试类型，查询该类型下的用户信息
+	 */
+	public List<DesignUserDO> queryDISCInfosByDiscType(String discType) {
+		List<DesignUserDO> designUserDOs=designUserMapper.getUserInfos(discType);
+		return designUserDOs;
+	}
+
+
 }

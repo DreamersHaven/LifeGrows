@@ -29,7 +29,7 @@ public interface DesignCollectMapper {
 	
 	int update(DesignCollectDO designCollect);
 	
-	int remove(Long id);
+	int remove(String id);
 	
 	int batchRemove(Long[] ids);
 	

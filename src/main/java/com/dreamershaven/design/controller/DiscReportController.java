@@ -72,6 +72,18 @@ public class DiscReportController {
 		return IMoocJSONResult.ok(designCollectDOs);
 	}
 	
+	@ApiOperation(value = "取消对某个用户的关注", notes = "取消对某个用户的关注的接口")
+	@ApiImplicitParam(name = "userId", value = "用户id", required = true, dataType = "String", paramType = "query")
+	@PostMapping("/delcollectDiscReport")
+	public IMoocJSONResult delcollectDiscReport(@RequestParam("userId") String userId) throws Exception {
+		//数据校验userId 不能为空
+		if (StringUtils.isBlank(userId)) {
+			return IMoocJSONResult.errorMsg("用户id不能为空...");
+		}
+		int result= designCollectService.remove(userId);
+		return IMoocJSONResult.ok("取消关注操作成功");
+	}
+	
 	
 	
 	

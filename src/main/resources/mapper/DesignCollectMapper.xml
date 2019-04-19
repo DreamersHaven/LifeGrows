@@ -79,7 +79,7 @@
 	</update>
 	
 	<delete id="remove">
-		delete from design_collect where id = #{value}
+		delete from design_collect where collectuser_id = #{value}
 	</delete>
 	
 	<delete id="batchRemove">

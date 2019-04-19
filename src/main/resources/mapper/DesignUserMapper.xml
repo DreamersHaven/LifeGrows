@@ -29,6 +29,13 @@
 			</if>
 
 		</where>
+		
+		<choose>
+		
+			<otherwise>
+				order by user_id desc
+			</otherwise>
+		</choose>
 
 	</select>
 

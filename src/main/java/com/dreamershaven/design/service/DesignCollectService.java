@@ -25,7 +25,7 @@ public interface DesignCollectService {
 	
 	int update(DesignCollectDO designCollect);
 	
-	int remove(Long id);
+	int remove(String userId);
 	
 	int batchRemove(Long[] ids);
 	/**

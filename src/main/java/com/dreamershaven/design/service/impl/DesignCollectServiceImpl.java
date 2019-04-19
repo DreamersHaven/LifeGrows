@@ -44,7 +44,7 @@ public class DesignCollectServiceImpl implements DesignCollectService {
 	}
 	
 	@Override
-	public int remove(Long id){
+	public int remove(String id){
 		return designCollectDao.remove(id);
 	}
 	

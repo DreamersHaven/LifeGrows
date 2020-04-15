@@ -10,7 +10,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
  
@@ -23,9 +22,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan(basePackages = { "com.dreamershaven.wechat.mapper","com.dreamershaven.design.config" })
 //@EnableAutoConfiguration
 @EnableAsync
-@EnableScheduling
+//@EnableScheduling
 @Configuration
 @EnableAutoConfiguration // 自动加载配置信息
+//消费者，注册
+//@EnableEurekaClient
 public class WechatApplication extends SpringBootServletInitializer{
 	 
 	

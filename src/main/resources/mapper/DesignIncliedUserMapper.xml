@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dreamershaven.wechat.mapper.DesignIncliedUserMapper">
+
+	<select id="get" resultType="com.dreamershaven.wechat.bean.DesignIncliedUserDO">
+		select `id`,`disc_type`,`kind_name`,`inclied`,`tagged`,`user_rating`,`backup2`,`user_id`,`user_name` from design_inclied_user where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.dreamershaven.wechat.bean.DesignIncliedUserDO">
+		select `id`,`disc_type`,`kind_name`,`inclied`,`tagged`,`user_rating`,`backup2`,`user_id`,`user_name` from design_inclied_user
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="discType != null and discType != ''"> and disc_type = #{discType} </if>
+		  		  <if test="kindName != null and kindName != ''"> and kind_name = #{kindName} </if>
+		  		  <if test="inclied != null and inclied != ''"> and inclied = #{inclied} </if>
+		  		  <if test="tagged != null and tagged != ''"> and tagged = #{tagged} </if>
+		  		  <if test="userRating != null and userRating != ''"> and user_rating = #{userRating} </if>
+		  		  <if test="backup2 != null and backup2 != ''"> and backup2 = #{backup2} </if>
+		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+		  		  <if test="userName != null and userName != ''"> and user_name = #{userName} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from design_inclied_user
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="discType != null and discType != ''"> and disc_type = #{discType} </if>
+		  		  <if test="kindName != null and kindName != ''"> and kind_name = #{kindName} </if>
+		  		  <if test="inclied != null and inclied != ''"> and inclied = #{inclied} </if>
+		  		  <if test="tagged != null and tagged != ''"> and tagged = #{tagged} </if>
+		  		  <if test="userRating != null and userRating != ''"> and user_rating = #{userRating} </if>
+		  		  <if test="backup2 != null and backup2 != ''"> and backup2 = #{backup2} </if>
+		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
+		  		  <if test="userName != null and userName != ''"> and user_name = #{userName} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.dreamershaven.wechat.bean.DesignIncliedUserDO" useGeneratedKeys="true" keyProperty="id">
+		insert into design_inclied_user
+		(
+			`disc_type`, 
+			`kind_name`, 
+			`inclied`, 
+			`tagged`, 
+			`user_rating`, 
+			`backup2`, 
+			`user_id`, 
+			`user_name`
+		)
+		values
+		(
+			#{discType}, 
+			#{kindName}, 
+			#{inclied}, 
+			#{tagged}, 
+			#{userRating}, 
+			#{backup2}, 
+			#{userId}, 
+			#{userName}
+		)
+	</insert>
+	
+	<insert id="batchSave" parameterType="List">
+	insert into design_inclied_user
+		(
+			`disc_type`, 
+			`kind_name`, 
+			`inclied`, 
+			`tagged`, 
+			`user_rating`, 
+			`backup2`, 
+			`user_id`, 
+			`user_name`
+		)
+		values
+		<foreach collection="list" item="designIncliedUser" index="index" separator=",">
+			(
+			#{designIncliedUser.discType}, 
+			#{designIncliedUser.kindName}, 
+			#{designIncliedUser.inclied}, 
+			#{designIncliedUser.tagged}, 
+			#{designIncliedUser.userRating}, 
+			#{designIncliedUser.backup2}, 
+			#{designIncliedUser.userId}, 
+			#{designIncliedUser.userName}
+		)
+		
+		</foreach>
+	
+	</insert>
+	 
+	<update id="update" parameterType="com.dreamershaven.wechat.bean.DesignIncliedUserDO">
+		update design_inclied_user 
+		<set>
+			<if test="discType != null">`disc_type` = #{discType}, </if>
+			<if test="kindName != null">`kind_name` = #{kindName}, </if>
+			<if test="inclied != null">`inclied` = #{inclied}, </if>
+			<if test="tagged != null">`tagged` = #{tagged}, </if>
+			<if test="userRating != null">`user_rating` = #{userRating}, </if>
+			<if test="backup2 != null">`backup2` = #{backup2}, </if>
+			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="userName != null">`user_name` = #{userName}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from design_inclied_user where user_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from design_inclied_user where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
